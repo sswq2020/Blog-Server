@@ -35,12 +35,12 @@ const newBlog = (blogData = {}) =>{
   })
 }
 
-const updateBlog = (id,blogData = {}) =>{
+const updateBlog = (id,author,blogData = {}) =>{
     // id就是要更新的博客id
     // blogData 是一个博客对象,包含title content 属性
     const {title,content} = blogData
     const sql = ` UPDATE blogs SET title='${title}',content='${content}' 
-    WHERE id = ${id};`  
+    WHERE id = ${id} AND author='${author}';`  
     return exec(sql).then(updateData =>{
         console.log(updateData);
         if(updateData.affectedRows > 0) {

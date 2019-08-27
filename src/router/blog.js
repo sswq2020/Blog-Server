@@ -62,7 +62,8 @@ const handleBlogRouter = (req, res) => {
             return loginCheck
         }
         const blogData = req.body
-        const result = updateBlog(id, blogData)
+        const author =  req.session.username
+        const result = updateBlog(id,author,blogData)
         return result.then(val => {
             if (val) {
                 return new SuccessModel("")
