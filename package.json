@@ -4,17 +4,19 @@
   "description": "",
   "main": "bin/www.js",
   "scripts": {
+    "commit": "git-cz",
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "cross-env NODE_ENV=dev nodemon ./bin/www.js",
-    "start":"npm run dev"
+    "start": "npm run dev"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "devDependencies":{
-    "cross-env":"^5.2.0",
-    "nodemon":"^1.18.9",
+  "devDependencies": {
+    "cross-env": "^5.2.0",
+    "git-cz": "^3.2.1",
     "mysql": "^2.17.1",
-    "redis":"^2.8.0"
+    "nodemon": "^1.18.9",
+    "redis": "^2.8.0"
   }
 }
