@@ -1,4 +1,5 @@
 const {exec} = require('../db/mysql');
+const xss = require('xss');
 
 const getList = (author,keyword) =>{
     let sql = `SELECT * FROM blogs WHERE 1=1 `
@@ -26,7 +27,7 @@ const newBlog = (blogData = {}) =>{
   const {title,content,author} = blogData;
   const createTime = Date.now();
   const sql = `INSERT INTO blogs (title,content,createtime,author)
-     values ('${title}','${content}',${createTime},'${author}');
+     values ('${xss(title)}','${xss(content)}',${createTime},'${author}');
      `;
   return exec(sql).then(insertData =>{
       return {
@@ -39,7 +40,7 @@ const updateBlog = (id,author,blogData = {}) =>{
     // id就是要更新的博客id
     // blogData 是一个博客对象,包含title content 属性
     const {title,content} = blogData
-    const sql = ` UPDATE blogs SET title='${title}',content='${content}' 
+    const sql = ` UPDATE blogs SET title='${xss(title)}',content='${xss(content)}' 
     WHERE id = ${id} AND author='${author}';`  
     return exec(sql).then(updateData =>{
         console.log(updateData);
