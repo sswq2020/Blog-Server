@@ -1,8 +1,9 @@
 const {exec,escape} = require('../db/mysql')
+const {genPassword} = require('../utils/cryp')
 
 const login = (username,password) =>{
     username = escape(username)
-    password = escape(password)
+    password = escape(genPassword(password))
    const sql = `SELECT username,realname FROM users WHERE username=${username} 
    AND password=${password};`
 
