@@ -1,20 +1,18 @@
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
+/*****解析cookie****/
 var cookieParser = require('cookie-parser');
+/*****日志功能****/
 var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-
+/*****app可以这么理解,每次服务端监听后生成的实例****/
 var app = express();
 
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
-
 app.use(logger('dev'));
-app.use(express.json());
+app.use(express.json()); // 通过express.json(),可以将post请求传递的参数,放入req.body中,比起原生node的getPostData函数,一行代码解决
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
