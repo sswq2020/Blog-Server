@@ -4,9 +4,12 @@
   "private": true,
   "scripts": {
     "commit": "git-cz",
-    "start": "node ./bin/www"
+    "dev": "cross-env NODE_ENV=dev nodemon ./bin/www",
+    "start":"npm run dev"
   },
   "dependencies": {
+    "cross-env": "^5.2.0",
+    "nodemon": "^1.18.9",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "express": "~4.16.1",
