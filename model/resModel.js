@@ -30,7 +30,19 @@ class ErrorModel extends BaseModel {
 
 }
 
+function createSuccessData(data,meassage){
+    let instance = new SuccessModel(data,meassage);
+    return instance;
+}
+
+function createErrorData(data,meassage){
+    let instance = new SuccessModel(data,meassage);
+    return instance;
+}
+
 module.exports = {
     SuccessModel,
-    ErrorModel
+    ErrorModel,
+    createSuccessData,
+    createErrorData
 }
