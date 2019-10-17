@@ -1,10 +1,23 @@
 var express = require('express');
 var router = express.Router();
+const {
+    getList,
+    getDetail,
+    newBlog,
+    updateBlog,
+    delBlog
+} = require("../controller/blog")
+const {createSuccessData,createErrorData} = require("../model/resModel")
 
 router.get('/list', function(req, res, next) {
-    res.json({
-        errno:0,
-        data:[1,2,3]
+    let author = req.query.author || ""
+    let keyword = req.query.keyword || ""
+
+    const result =getList(author,keyword)
+    return result.then(listData =>{
+       res.json(createSuccessData(listData));
+    }).catch(err => {
+        res.json(createErrorData(err)) ;
     })
 });
 
