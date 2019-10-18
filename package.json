@@ -5,20 +5,22 @@
   "scripts": {
     "commit": "git-cz",
     "dev": "cross-env NODE_ENV=dev nodemon ./bin/www",
-    "start":"npm run dev"
+    "start": "npm run dev"
   },
   "dependencies": {
-    "cross-env": "^5.2.0",
-    "nodemon": "^1.18.9",
     "cookie-parser": "~1.4.4",
+    "cross-env": "^5.2.0",
     "debug": "~2.6.9",
     "express": "~4.16.1",
+    "express-session": "^1.17.0",
+    "git-cz": "^3.2.1",
     "http-errors": "~1.6.3",
     "jade": "~1.11.0",
     "morgan": "~1.9.1",
-    "git-cz": "^3.2.1",
     "mysql": "^2.17.1",
+    "nodemon": "^1.18.9",
     "redis": "^2.8.0",
-    "xss":"^1.0.6"
+    "connect-redis":"^4.0.3",
+    "xss": "^1.0.6"
   }
 }
