@@ -36,7 +36,7 @@ function createSuccessData(data,meassage){
 }
 
 function createErrorData(data,meassage){
-    let instance = new SuccessModel(data,meassage);
+    let instance = new ErrorModel(data,meassage);
     return instance;
 }
 
