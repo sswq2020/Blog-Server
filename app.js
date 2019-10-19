@@ -34,7 +34,7 @@ app.use(session({
   cookie:{
     path:'/', // 默认配置
     httpOnly:true, // 默认配置
-    maxAge:10 * 60 * 1000
+    maxAge:60 * 60 * 1000
   },
   store:sessionStore //之前没有redis，session存在内存中,现在可以放在redis数据库里
 
