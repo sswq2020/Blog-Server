@@ -13,7 +13,6 @@ const redisClient =  require("./db/redis")
 /****session连接redis***/
 const RedisStore = require('connect-redis')(session) // 用法参照https://www.npmjs.com/package/connect-redis
 
-const indexRouter = require('./routes/index');
 const blogRouter = require('./routes/blog');
 const userRouter = require('./routes/user');
 /*****app可以这么理解,每次服务端监听后生成的实例****/
@@ -40,7 +39,6 @@ app.use(session({
 
 }))
 
-app.use('/', indexRouter);
 app.use('/api/blog', blogRouter);
 app.use('/api/user', userRouter);
 
@@ -57,7 +55,10 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  res.json({
+    message: err.message,
+    error: err
+  });
 });
 
 module.exports = app;
