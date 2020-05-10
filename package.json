@@ -5,6 +5,7 @@
   "scripts": {
     "commit": "git-cz",
     "dev": "cross-env NODE_ENV=dev nodemon ./bin/www",
+    "prd": "cross-env NODE_ENV=production nodemon ./bin/www",
     "start": "npm run dev"
   },
   "dependencies": {

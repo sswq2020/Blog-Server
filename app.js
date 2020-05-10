@@ -2,6 +2,7 @@
 const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
+const fs = require('fs');
 /*****解析cookie****/
 const cookieParser = require('cookie-parser');
 /*****日志功能****/
@@ -12,13 +13,29 @@ const session = require("express-session")
 const redisClient =  require("./db/redis")
 /****session连接redis***/
 const RedisStore = require('connect-redis')(session) // 用法参照https://www.npmjs.com/package/connect-redis
-
+/****获取环境变量***/
+const ENV = process.env.NODE_ENV
 const blogRouter = require('./routes/blog');
 const userRouter = require('./routes/user');
 /*****app可以这么理解,每次服务端监听后生成的实例****/
 let app = express();
 
-app.use(logger('dev'));
+
+if(ENV !== 'production'){
+  // 开发环境,测试环境
+  app.use(logger('dev'));
+}else{
+  // 线上环境
+  const logFileName = path.join(__dirname,'logs','access.log')
+  const writeStream = fs.createWriteStream(logFileName,{
+    flags:'a'
+  })
+  app.use(logger('combined',{
+    stream: writeStream
+  }))
+}
+
+
 app.use(express.json()); // 通过express.json(),可以将post请求传递的参数,放入req.body中,比起原生node的getPostData函数,一行代码解决
 app.use(express.urlencoded({ extended: false }));// 因为上面是接收req.headers['content-type'] === 'application/json',而没有post还有x-www-form等其他形式的,这里做这个处理
 app.use(cookieParser());
