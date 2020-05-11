@@ -5,8 +5,8 @@
   "scripts": {
     "commit": "git-cz",
     "start": "node bin/www",
-    "dev": "./node_modules/.bin/nodemon bin/www",
-    "prd": "pm2 start bin/www",
+    "dev": "cross-env NODE_ENV=dev ./node_modules/.bin/nodemon bin/www",
+    "prd": "cross-env NODE_ENV=production pm2 start bin/www",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
@@ -24,6 +24,7 @@
     "pug": "^2.0.3"
   },
   "devDependencies": {
+    "cross-env": "^7.0.2",
     "nodemon": "^1.19.1"
   }
 }
